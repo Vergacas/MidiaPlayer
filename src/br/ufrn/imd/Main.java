@@ -1,4 +1,4 @@
-package application;
+package br.ufrn.imd;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
