@@ -17,7 +17,7 @@ public class Usuario {
 	private Integer id;
 	private String nome;
 	private String email;
-	private Date data_nasc;
+	private Date dataNasc;
 	
 	/**
 	 * Método getId que retorno o id do usuario.
@@ -68,19 +68,19 @@ public class Usuario {
 	}
 	
 	/**
-	 * Método getData_nasc que retorna a data_nasc do Usuario.
+	 * Método getDataNasc que retorna a data_nasc do Usuario.
 	 * @return
 	 */
-	public Date getData_nasc() {
-		return data_nasc;
+	public Date getDataNasc() {
+		return dataNasc;
 	}
 	
 	/**
-	 * Método setData_nasc que recebe um Date, e modifica a data_nasc do Usuario.
+	 * Método setDataNasc que recebe um Date, e modifica a data_nasc do Usuario.
 	 * @param data_nasc
 	 */
-	public void setData_nasc(Date data_nasc) {
-		this.data_nasc = data_nasc;
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 	
 	
