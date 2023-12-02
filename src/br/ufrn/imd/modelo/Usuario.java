@@ -2,17 +2,16 @@ package br.ufrn.imd.modelo;
 
 import java.util.Date;
 
+/**
+ * Esta é a classe modelo para usuarios, contendo os atributos(id, nome, email, data_nasc).
+ * 
+ * <br>
+ * @author jeanv
+ * @version 1.0
+ *</br>
+ * 
+ */
 public class Usuario {
-	
-	/**
-	 * Esta é a classe modelo para usuarios, contendo os atributos(id, nome, email, data_nasc).
-	 * 
-	 * <br>
-	 * @author jeanv
-	 * @version 1.0
-	 *</br>
-	 * 
-	 */
 	
 	private Integer id;
 	private String nome;
