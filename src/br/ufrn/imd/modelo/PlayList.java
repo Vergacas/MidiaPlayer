@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Essa é a classe modelo para PlayLists.
  * 
  * <br>
- * comtem os atributos()
+ * comtem os atributos(nome, criador e uma Lista de idMusica)
  * @version 1.0
  * @author jeanv
  *</br>
