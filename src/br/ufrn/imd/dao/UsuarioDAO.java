@@ -9,11 +9,13 @@ import br.ufrn.imd.modelo.Usuario;
  * Essa é a classe de armazenamento de Usuario.
  * 
  * @author jeanv
- * @version 1.0
+ * @version 1.10
  */
 public class UsuarioDAO {
 	private ArrayList<Usuario> usuarios;
 	private static UsuarioDAO bdUsuario;
+	
+	private Integer id = 0;
 	
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	/**
@@ -37,7 +39,7 @@ public class UsuarioDAO {
 	 * @param u
 	 */
 	public void addUsuario(Usuario u) {
-		Integer id = usuarios.size();
+		id++;
 		u.setId(id);
 		usuarios.add(u);
 	}
