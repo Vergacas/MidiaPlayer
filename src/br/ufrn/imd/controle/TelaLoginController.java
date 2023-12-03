@@ -51,7 +51,7 @@ public class TelaLoginController {
     @FXML
     void abritTelaUsuario(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(null);
+    	loader.setLocation(TelaCadastroUsuarioController.class.getResource("/br/ufrn/imd/visao/TelaCadastroUsuario.fxml"));
     	AnchorPane page = (AnchorPane) loader.load();
     	
     	Stage usuarioStage = new Stage();
