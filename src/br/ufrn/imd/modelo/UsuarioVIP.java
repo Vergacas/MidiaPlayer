@@ -30,4 +30,6 @@ public class UsuarioVIP extends Usuario{
 		this.vip = vip;
 	}
 	
+	
+	
 }
