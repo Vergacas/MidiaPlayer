@@ -15,6 +15,8 @@ public class MusicaDAO {
 	private ArrayList<Musica> musicas;
 	private static MusicaDAO bdMusica;
 	
+	private Integer id = 0;
+	
 	/***
 	 * Método costrutor de MusicaDAO que inicializa a classe.
 	 * 
@@ -35,7 +37,7 @@ public class MusicaDAO {
 	 * @param m
 	 */
 	public void addMusica(Musica m) {
-		Integer id = musicas.size();
+		this.id ++;
 		m.setId(id);
 		musicas.add(m);
 	}
