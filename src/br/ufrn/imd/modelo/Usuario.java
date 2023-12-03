@@ -3,11 +3,12 @@ package br.ufrn.imd.modelo;
 import java.util.Date;
 
 /**
- * Esta é a classe modelo para usuarios, contendo os atributos(id, nome, email, data_nasc).
+ * Esta é a classe modelo para usuarios.
  * 
  * <br>
+ * contendo os atributos(id, nome, email, data_nasc).
  * @author jeanv
- * @version 1.0
+ * @version 1.01
  *</br>
  * 
  */
@@ -16,6 +17,7 @@ public class Usuario {
 	private Integer id;
 	private String nome;
 	private String email;
+	private String senha;
 	private Date dataNasc;
 	
 	/**
@@ -66,6 +68,22 @@ public class Usuario {
 		this.email = email;
 	}
 	
+	/**
+	 * Método getSenha que retorna a senha do Usuario
+	 * @return senha
+	 */
+	public String getSenha() {
+		return senha;
+	}
+	
+	/**
+	 * Método setSenha que recebe uma String e modifica a senha do Usuario
+	 * @param senha
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	/**
 	 * Método getDataNasc que retorna a data_nasc do Usuario.
 	 * @return
