@@ -14,11 +14,11 @@ import java.util.Date;
  */
 public class Usuario {
 	
-	private Integer id;
-	private String nome;
-	private String email;
-	private String senha;
-	private Date dataNasc;
+	protected Integer id;
+	protected String nome;
+	protected String email;
+	protected String senha;
+	protected Date dataNasc;
 	
 	/**
 	 * Método getId que retorno o id do usuario.
