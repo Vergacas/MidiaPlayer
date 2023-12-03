@@ -9,12 +9,15 @@ import java.util.ArrayList;
  * Classe de armazenamento de UsuariosVIP
  * 
  * @author jeanv
+ * @version 1.10
  *
  */
 public class UsuarioVIPDAO {
 
 	private ArrayList<UsuarioVIP> usuariosVIP;
 	private static UsuarioDAO bdUsuarioVIP;
+	
+	private Integer id = 0;
 	
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	/**
@@ -38,7 +41,7 @@ public class UsuarioVIPDAO {
 	 * @param u
 	 */
 	public void addUsuario(UsuarioVIP u) {
-		Integer id = usuariosVIP.size();
+		id ++;
 		u.setId(id);
 		usuariosVIP.add(u);
 	}
