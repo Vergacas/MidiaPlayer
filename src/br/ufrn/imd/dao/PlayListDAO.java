@@ -33,4 +33,15 @@ public class PlayListDAO {
 	public void addPlayList(PlayList pl) {
 		pls.add(pl);
 	}
+	
+	
+	public String listarplayLists() {
+		String output = "---------------------------------------";
+		for ( PlayList pl : pls) {
+			output += "Nome: " + pl.getNome() +  "\tCriador: " + pl.getCriador() + "\n";
+			output += "---------------------------------------" + "\n";
+		}
+		
+		return output;
+	}
 }
