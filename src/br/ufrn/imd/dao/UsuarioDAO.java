@@ -1,7 +1,13 @@
 package br.ufrn.imd.dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
 
 import br.ufrn.imd.modelo.Usuario;
 
@@ -20,28 +26,32 @@ public class UsuarioDAO {
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	/**
 	 * Método costrutor de UsuarioDAO que inicializa a classe.
+	 * @throws FileNotFoundException 
 	 * 
 	 */
-	public UsuarioDAO() {
+	public UsuarioDAO() throws FileNotFoundException {
 		usuarios = new ArrayList<Usuario>();
+		recuperUsuarios();
+		System.out.println(usuarios.size());
 	}
 	
-	public static UsuarioDAO getIstance() {
+	public static UsuarioDAO getIstance() throws FileNotFoundException {
 		if(bdUsuario == null) {
 			bdUsuario = new UsuarioDAO();
 		}
-		
 		return bdUsuario;
 	}
 	
 	/**
 	 * Método addUsuario que recebe um Usuario e adiciona a lista de Usuarios
 	 * @param u
+	 * @throws IOException 
 	 */
-	public void addUsuario(Usuario u) {
+	public void addUsuario(Usuario u) throws IOException {
 		id++;
 		u.setId(id);
 		usuarios.add(u);
+		guardarUsuarios();
 	}
 	
 	/**
@@ -50,6 +60,10 @@ public class UsuarioDAO {
 	 */
 	public void removerUsuario(Usuario u) {
 		usuarios.remove(u);
+	}
+	
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
 	}
 	
 	/**
@@ -65,5 +79,69 @@ public class UsuarioDAO {
 		}
 		
 		return output;
+	}
+	
+	public boolean testeSegurança(Usuario u){
+		boolean test = false;
+		for(Usuario use : usuarios) {
+			if(u.getNome().equals(use.getNome())) {
+				if(u.getSenha().equals(use.getSenha())) {
+					test = true;
+					break;
+				}
+			}
+		}
+		
+		return test;
+	}
+	
+	
+	public void guardarUsuarios() throws IOException {
+		String caminho = "salvos/usuarios.txt";
+		
+		FileWriter escritor = new FileWriter(caminho);
+		String output = "";
+		for(Usuario u : usuarios) {
+			output += String.valueOf(u.getId()) + "\n" +
+					u.getNome() + "\n" + u.getEmail() + "\n"
+					+ u.getSenha() + "\n" + 
+					formato.format(u.getDataNasc());
+			
+		}
+		
+		escritor.write(output);
+		escritor.close();
+	}
+	
+	public void recuperUsuarios() throws FileNotFoundException {
+		File file = new File("salvos/usuarios.txt");
+		
+		Scanner scan = new Scanner(file);
+		
+		Usuario u = new Usuario();
+		
+		int cont = 0;
+		
+		while(scan.hasNextLine()) {
+			if(cont == 0) {
+				scan.nextLine();
+				//u.setId(Integer.valueOf());
+			}else if (cont == 1) {
+				u.setNome(scan.nextLine());
+				
+			} else if (cont == 2) {
+				u.setEmail(scan.nextLine());
+			} else if (cont == 3) {
+				u.setSenha(scan.nextLine());
+			} else {
+				scan.nextLine();
+				cont = 0;
+				u.setId(usuarios.size());
+				usuarios.add(u);
+				u = new Usuario();
+			}
+			cont++;
+		}
+		scan.close();
 	}
 }

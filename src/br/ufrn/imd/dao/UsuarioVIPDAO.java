@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class UsuarioVIPDAO {
 
 	private ArrayList<UsuarioVIP> usuariosVIP;
-	private static UsuarioDAO bdUsuarioVIP;
+	private static UsuarioVIPDAO bdUsuarioVIP;
 	
 	private Integer id = 0;
 	
@@ -28,9 +28,9 @@ public class UsuarioVIPDAO {
 		usuariosVIP = new ArrayList<UsuarioVIP>();
 	}
 	
-	public static UsuarioDAO getIstance() {
+	public static UsuarioVIPDAO getIstance() {
 		if(bdUsuarioVIP == null) {
-			bdUsuarioVIP = new UsuarioDAO();
+			bdUsuarioVIP = new UsuarioVIPDAO();
 		}
 		
 		return bdUsuarioVIP;

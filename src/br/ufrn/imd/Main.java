@@ -7,9 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
-
+/**
+ * Classe main que inicialia o programa e chama a TelaLogin
+ * @author jeanv
+ *
+ */
 public class Main extends Application {
 	@Override
+	/**
+	 * classe Main
+	 */
 	public void start(Stage stage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("visao/TelaLogin.fxml"));
 		Scene scene = new Scene(root);

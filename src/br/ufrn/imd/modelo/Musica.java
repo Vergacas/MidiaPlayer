@@ -4,21 +4,28 @@ package br.ufrn.imd.modelo;
 /**
  * Esta é a classe modelo para Musica.
  * 
- * <br>
+ * 
  * cotem os atributos (nome, autor, url).
  * @author jeanv
  * @version 1.0
- *</br>
+ *
  */
 public class Musica {
+	/***
+	 * Atributo Id
+	 */
 	private Integer id;
+	/***
+	 * Atributo Nome
+	 */
 	private String nome;
+	/***
+	 * Atributo Autor
+	 */
 	private String autor;
-	private String url;
-
-	/**
+	/***
 	 * Método getId que retorna o id da Musica.
-	 * @return id
+	 * @return Integer id
 	 */
 	public Integer getId() {
 		return id;
@@ -26,7 +33,7 @@ public class Musica {
 
 	/**
 	 * Método setId que recebe um Integer e modifica o id da Musica.
-	 * @param id
+	 * @param Integer id
 	 */
 	public void setId(Integer id) {
 		this.id = id;
@@ -34,7 +41,7 @@ public class Musica {
 
 	/**
 	 * Método getNome que retona o nome da Musica.
-	 * @return nome
+	 * @return String nome
 	 */
 	public String getNome() {
 		return nome;
@@ -42,7 +49,7 @@ public class Musica {
 	
 	/**
 	 * Método setNome que recebe uma String e modifica o nome da Musica.
-	 * @param nome
+	 * @param String nome
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -50,7 +57,7 @@ public class Musica {
 	
 	/**
 	 * Método getAutor que retorna o autor da Musica.
-	 * @return autor
+	 * @return String autor
 	 */
 	public String getAutor() {
 		return autor;
@@ -58,26 +65,10 @@ public class Musica {
 	
 	/**
 	 * Método setAutor que recebe uma String e modifica o autor da Musica.
-	 * @param autor
+	 * @param String autor
 	 */
 	public void setAutor(String autor) {
 		this.autor = autor;
-	}
-	
-	/**
-	 * Método getUrl que retorna a url da Musica.
-	 * @return url
-	 */
-	public String getUrl() {
-		return url;
-	}
-	
-	/**
-	 * Método setUrl que recebe uma string e modifica a url da Musica.
-	 * @param url
-	 */
-	public void setUrl(String url) {
-		this.url = url;
 	}
 	
 }

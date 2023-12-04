@@ -15,8 +15,6 @@ public class MusicaDAO {
 	private ArrayList<Musica> musicas;
 	private static MusicaDAO bdMusica;
 	
-	private Integer id = 0;
-	
 	/***
 	 * Método costrutor de MusicaDAO que inicializa a classe.
 	 * 
@@ -25,6 +23,10 @@ public class MusicaDAO {
 		musicas = new ArrayList<Musica>();
 	}
 	
+	/**
+	 * metodo getInstace retorna o DAO, e cria um novo caso esteja vazio
+	 * @return
+	 */
 	public static MusicaDAO getIsntace() {
 		if(bdMusica == null) {
 			bdMusica = new MusicaDAO();
@@ -34,17 +36,17 @@ public class MusicaDAO {
 	
 	/***
 	 * Método addMusica que adiciona uma musica a lista de musicas
-	 * @param m
+	 * @param Musica
 	 */
 	public void addMusica(Musica m) {
-		this.id ++;
+		Integer id = musicas.size();
 		m.setId(id);
 		musicas.add(m);
 	}
 	
 	/***
 	 * Método removerMusica que remove uma musica da lista de musicas
-	 * @param m
+	 * @param Musica
 	 */
 	public void removerMusica(Musica m) {
 		musicas.remove(m);
@@ -52,7 +54,7 @@ public class MusicaDAO {
 	
 	/***
 	 * método para listar as musicas
-	 * @return output
+	 * @return String
 	 */
 	public String listarMusicas() {
 		String output = "-----------------------------------" + "\n";
@@ -62,4 +64,13 @@ public class MusicaDAO {
 		}
 		return output;
 	}
+	
+	/**
+	 * Métod getMusica retorna a Lista das Musicas
+	 * @return ArrayList<Musica>
+	 */
+	public ArrayList<Musica> getMusicas() {
+		return musicas;
+	}
+	
 }

@@ -5,21 +5,29 @@ import java.util.ArrayList;
 /**
  * Essa é a classe modelo para PlayLists.
  * 
- * <br>
+ * 
  * comtem os atributos(nome, criador e uma Lista de idMusica)
  * @version 1.0
  * @author jeanv
- *</br>
+ *
  */
 public class PlayList {
-	
+	/***
+	 * Atributo Nome
+	 */
 	private String nome;
+	/***
+	 * Atributo criador
+	 */
 	private String criador;
+	/***
+	 * Lista de ids das Musicas
+	 */
 	private ArrayList<Integer> idMusicas;
 	 
 	/**
 	 * Método getNome que retorna o nome da PlayList.
-	 * @return nome
+	 * @return  String nome
 	 */
 	public String getNome() {
 		return nome;
@@ -27,7 +35,7 @@ public class PlayList {
 	
 	/**
 	 * Método setNome que recebe uma String e modifica o nome da PlayList.
-	 * @param nome
+	 * @param String nome
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -35,7 +43,7 @@ public class PlayList {
 	
 	/**
 	 * Método getCriador que retorna o criador da PlayList.
-	 * @return criador
+	 * @return String criador
 	 */
 	public String getCriador() {
 		return criador;
@@ -43,7 +51,7 @@ public class PlayList {
 	
 	/**
 	 * Método setCriador que recebe uma String e modifica o criador da PlayList.
-	 * @param criador
+	 * @param String criador
 	 */
 	public void setCriador(String criador) {
 		this.criador = criador;
@@ -51,7 +59,7 @@ public class PlayList {
 	
 	/**
 	 * Método getIdMusicas que retorna uma lista de id das Musicas da PlayList.
-	 * @return idMusicas
+	 * @return ArrayList<Integer> idMusicas
 	 */
 	public ArrayList<Integer> getIdMusicas() {
 		return idMusicas;
@@ -59,7 +67,7 @@ public class PlayList {
 	
 	/**
 	 * Método addMusica que recebe um Integer e adiciona a lista de id das Musicas da PlayList.
-	 * @param idMusica
+	 * @param ArrayList<Integer> idMusica
 	 */
 	public void addMusica(Integer idMusica) {
 		idMusicas.add(idMusica);

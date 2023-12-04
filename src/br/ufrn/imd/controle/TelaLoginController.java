@@ -2,6 +2,8 @@ package br.ufrn.imd.controle;
 
 import java.io.IOException;
 
+import br.ufrn.imd.dao.UsuarioDAO;
+import br.ufrn.imd.modelo.Usuario;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +26,10 @@ import javafx.stage.Stage;
  */
 public class TelaLoginController {
 
+	private boolean btnConfirmarClicked = false;
+	
+	UsuarioDAO bdUsuario;
+	
     @FXML
     private Button btnCancelar;
 
@@ -48,8 +54,22 @@ public class TelaLoginController {
     @FXML
     private TextField tfSenhaU;
 
+    public boolean isBtnConfirmarClicked() {
+    	return btnConfirmarClicked;
+    }
+    
+    public void setBtnConfirmarClicked(boolean btnConfirmarClicked){
+    	this.btnConfirmarClicked = btnConfirmarClicked;
+    }
+    
+    /***
+     * Método abriTelaUsuario
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void abritTelaUsuario(ActionEvent event) throws IOException{
+    void abrirTelaUsuario(ActionEvent event) throws IOException{
+    	
     	FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(TelaCadastroUsuarioController.class.getResource("/br/ufrn/imd/visao/TelaCadastroUsuario.fxml"));
     	AnchorPane page = (AnchorPane) loader.load();
@@ -71,8 +91,42 @@ public class TelaLoginController {
     }
 
     @FXML
-    void logar(ActionEvent event) {
+    void logar(ActionEvent event) throws IOException {
+    	this.btnConfirmarClicked = true;
+    	
+    	if(this.btnConfirmarClicked) {
 
+        	bdUsuario = UsuarioDAO.getIstance();
+        	Usuario user = new Usuario();
+        	user.setNome(tfNomeU.getText());
+        	user.setSenha(tfSenhaU.getText());
+        	
+        	
+        	if(bdUsuario.testeSegurança(user)) {
+        		
+        		
+        		FXMLLoader loader = new FXMLLoader();
+    	    	loader.setLocation(TelaMidiaPlayController.class.getResource("/br/ufrn/imd/visao/TelaMidiaPlay.fxml"));
+    	    	AnchorPane page = (AnchorPane) loader.load();
+    	    	
+    	    	Stage mpStage = new Stage();
+    	    	mpStage.setTitle("Midia Player");
+    	    	mpStage.setResizable(false);
+    	    	Scene scene = new Scene(page);
+    	    	mpStage.setScene(scene);
+    	    	
+    	    	TelaMidiaPlayController controller = loader.getController();
+    	    	
+    	    	controller.setMidaStage(mpStage);
+    	    	
+    	    	mpStage.show();
+    	    	
+        	}else {
+        		System.out.print("Usuario ou senha incorretos");
+        	}    
+        	tfNomeU.setText(null);
+        	tfSenhaU.setText(null);
+    	}
     }
 
 }

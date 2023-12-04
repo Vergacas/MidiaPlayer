@@ -3,11 +3,11 @@ package br.ufrn.imd.modelo;
 /**
  * Esta é a classe modelo UsuarioVIP que herda de Usuario. 
  * 
- *<br>
+ *
  * Comtem um atributo (vip do tipo boolean)
  * @author jeanv
  * @version 1.0
- *</br>
+ *
  */
 public class UsuarioVIP extends Usuario{
 	

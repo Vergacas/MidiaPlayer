@@ -5,24 +5,37 @@ import java.util.Date;
 /**
  * Esta é a classe modelo para usuarios.
  * 
- * <br>
+ * 
  * contendo os atributos(id, nome, email, data_nasc).
  * @author jeanv
  * @version 1.01
- *</br>
  * 
  */
 public class Usuario {
-	
+	/**
+	 * Atributo Id
+	 */
 	protected Integer id;
+	/**
+	 * Atributo nome
+	 */
 	protected String nome;
+	/**
+	 * Atributo Email
+	 */
 	protected String email;
+	/**
+	 * Atributo Senha
+	 */
 	protected String senha;
+	/**
+	 * Atributo Data de nascimento
+	 */
 	protected Date dataNasc;
 	
 	/**
 	 * Método getId que retorno o id do usuario.
-	 * @return id
+	 * @return  Integer id
 	 */
 	public Integer getId() {
 		return id;
@@ -30,7 +43,7 @@ public class Usuario {
 	
 	/**
 	 * Método setId que recebe um Integer, e modifica o id do usuario.
-	 * @param id
+	 * @param Integer id
 	 */
 	public void setId(Integer id) {
 		this.id = id;
@@ -38,7 +51,7 @@ public class Usuario {
 	
 	/**
 	 * Método getNome que retorna o nome do Usuario.
-	 * @return nome
+	 * @return String nome
 	 */
 	public String getNome() {
 		return nome;
@@ -46,7 +59,7 @@ public class Usuario {
 	
 	/**
 	 * Método setNome que recebe uma String, e modifica o Nome do Usuario.
-	 * @param nome
+	 * @param String nome
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -54,7 +67,7 @@ public class Usuario {
 	
 	/**
 	 * Método getEmail que retorna o email do Usuario.
-	 * @return email
+	 * @return  String email
 	 */
 	public String getEmail() {
 		return email;
@@ -62,7 +75,7 @@ public class Usuario {
 	
 	/**
 	 * Método setEmail que recebe uma string, e modifica o email do Usuario;
-	 * @param email
+	 * @param String email
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -70,7 +83,7 @@ public class Usuario {
 	
 	/**
 	 * Método getSenha que retorna a senha do Usuario
-	 * @return senha
+	 * @return String senha
 	 */
 	public String getSenha() {
 		return senha;
@@ -78,7 +91,7 @@ public class Usuario {
 	
 	/**
 	 * Método setSenha que recebe uma String e modifica a senha do Usuario
-	 * @param senha
+	 * @param String senha
 	 */
 	public void setSenha(String senha) {
 		this.senha = senha;
@@ -86,7 +99,7 @@ public class Usuario {
 
 	/**
 	 * Método getDataNasc que retorna a data_nasc do Usuario.
-	 * @return
+	 * @return Date dataNasc
 	 */
 	public Date getDataNasc() {
 		return dataNasc;
@@ -94,7 +107,7 @@ public class Usuario {
 	
 	/**
 	 * Método setDataNasc que recebe um Date, e modifica a data_nasc do Usuario.
-	 * @param data_nasc
+	 * @param Date data_nasc
 	 */
 	public void setDataNasc(Date dataNasc) {
 		this.dataNasc = dataNasc;
