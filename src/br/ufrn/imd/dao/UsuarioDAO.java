@@ -87,32 +87,42 @@ public class UsuarioDAO {
 	 * @return Usuario use
 	 */
 	public Usuario testeSegurança(Usuario u){
-
+		System.out.println("1");
+		int cont = 0;
 		for(Usuario use : usuarios) {
+			System.out.println(cont);
 			if(u.getNome().equals(use.getNome())) {
+				System.out.println("1");
 				if(u.getSenha().equals(use.getSenha())) {
+					System.out.println("2");
 					return use;
 				}
 			}
+			cont++;
 		}
 		
 		return null;
 	}
 	
-	
+	/***
+	 * Método guardarUsuarios escreve todos os dados dos usuarios(separados por ';') em um arquivo 'usuarios.txt', que se 
+	 * loacliza na pasta salvos, que fica na raiz do projeto.
+	 * cada usuario ocupa uma linha
+	 * @throws IOException
+	 */
 	public void guardarUsuarios() throws IOException {
 		String caminho = "salvos/usuarios.txt";
 		
 		FileWriter escritor = new FileWriter(caminho);
 		String output = "";
 		for(Usuario u : usuarios) {
-			output += String.valueOf(u.getId()) + ";" +
+			output = String.valueOf(u.getId()) + ";" +
 					u.getNome() + ";" + u.getEmail() + ";"
 					+ u.getSenha() + ";" + 
 					formato.format(u.getDataNasc()) + "\n";
-			
+			escritor.write(output);
 		}
-		escritor.write(output);
+		
 		
 		escritor.close();
 	}
@@ -122,11 +132,9 @@ public class UsuarioDAO {
 		
 		Scanner scan = new Scanner(file);
 		
-		Usuario u = new Usuario();
-		
-		
 		
 		while(scan.hasNextLine()) {
+			Usuario u = new Usuario();
 			String[] dadosUser;
 			String recuperar = scan.nextLine();
 			dadosUser = recuperar.split(";");
