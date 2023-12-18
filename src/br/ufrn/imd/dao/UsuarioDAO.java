@@ -21,8 +21,6 @@ public class UsuarioDAO {
 	private ArrayList<Usuario> usuarios;
 	private static UsuarioDAO bdUsuario;
 	
-	private Integer id = 0;
-	
 	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	/**
 	 * Método costrutor de UsuarioDAO que inicializa a classe.
@@ -48,8 +46,8 @@ public class UsuarioDAO {
 	 * @throws IOException 
 	 */
 	public void addUsuario(Usuario u) throws IOException {
-		id++;
-		u.setId(id);
+		
+		u.setId(usuarios.size() + 1);
 		usuarios.add(u);
 		guardarUsuarios();
 	}
@@ -111,11 +109,11 @@ public class UsuarioDAO {
 			output += String.valueOf(u.getId()) + ";" +
 					u.getNome() + ";" + u.getEmail() + ";"
 					+ u.getSenha() + ";" + 
-					formato.format(u.getDataNasc());
+					formato.format(u.getDataNasc()) + "\n";
 			
 		}
-		
 		escritor.write(output);
+		
 		escritor.close();
 	}
 	
