@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 
 
 import br.ufrn.imd.dao.MusicaDAO;
+import br.ufrn.imd.dao.UsuarioDAO;
 import br.ufrn.imd.modelo.Musica;
 import br.ufrn.imd.modelo.Usuario;
 
@@ -39,8 +40,10 @@ import br.ufrn.imd.modelo.Usuario;
 public class TelaMidiaPlayController implements Initializable{
 	
 	MusicaDAO bdMusica;
+	UsuarioDAO bdUsuario;
 	
-	String user;
+	private Usuario user;
+	private Integer idUser;
 	
 	/**
 	 * atributo Stage
@@ -93,17 +96,17 @@ public class TelaMidiaPlayController implements Initializable{
      * ListView q mostra as musica
      */
     @FXML
-    private ListView<Musica> lvMusicas;
+    private ListView<String> lvMusicas;
     
     /**
      * atributo para guarda musica
      */
-    private List<Musica> musicas = new ArrayList<Musica>();
+    private List<String> musicas = new ArrayList<String>();
     
     /**
      * ObservableList de Musicas
      */
-    private ObservableList<Musica> obMusicas;
+    private ObservableList<String> obMusicas;
     /**
      * ListView de Playlist
      */
@@ -159,11 +162,23 @@ public class TelaMidiaPlayController implements Initializable{
      * metodo carregarMusicas adiciona as musicas no listeView
      */
     public void carregarMusicas() {
-    	musicas = bdMusica.getMusicas();
     	
+    	for(int i = 0; i < bdMusica.getMusicas().size(); i++) {
+    		musicas.add(bdMusica.getMusicas().get(i).getNome()); 
+    	}
     	obMusicas = FXCollections.observableArrayList(musicas);
     	
     	lvMusicas.setItems(obMusicas);
+    }
+    
+    public void setUsuario() throws FileNotFoundException {
+    	bdUsuario = UsuarioDAO.getIstance();
+    	user = bdUsuario.getUsuario(idUser);
+    }
+    
+    public void setIdUser(Integer id) {
+    	idUser = id;
+    	System.out.println(idUser);
     }
     
     /**
@@ -182,21 +197,20 @@ public class TelaMidiaPlayController implements Initializable{
     	if(files != null) {
     		for(File file : files) {
     			
+    			String nomeM  = String.valueOf(file.getName());
+    			nomeM = nomeM.substring(0, nomeM.length() - 4);
+    			System.out.println(nomeM);
     			Musica m = new Musica();
-    			m.setNome(file.getName());
+    			m.setNome(nomeM);
     			m.setAutor("");
-    			
-    			System.out.println(m.getNome());
-    			songs.add(file);
     			bdMusica.addMusica(m);
+    			songs.add(file);
     		}
     	}
     	media = new Media(songs.get(songNumber).toURI().toString());
     	mediaPlayer = new MediaPlayer(media);
     	carregarMusicas();
     	lbNomeMusica.setText(songs.get(songNumber).getName());
-    	
-    	
     }
     
     /**

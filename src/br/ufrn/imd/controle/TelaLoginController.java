@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * 
  * 
  * @author jeanv
- * @version 1.0
+ * @version 1.2
  */
 public class TelaLoginController {
 
@@ -101,9 +101,10 @@ public class TelaLoginController {
         	user.setNome(tfNomeU.getText());
         	user.setSenha(tfSenhaU.getText());
         	
+        	user = bdUsuario.testeSegurança(user);
         	
-        	if(bdUsuario.testeSegurança(user)) {
-        		
+        	if(user != null) {
+        		int id = user.getId();
         		
         		FXMLLoader loader = new FXMLLoader();
     	    	loader.setLocation(TelaMidiaPlayController.class.getResource("/br/ufrn/imd/visao/TelaMidiaPlay.fxml"));
@@ -117,12 +118,14 @@ public class TelaLoginController {
     	    	
     	    	TelaMidiaPlayController controller = loader.getController();
     	    	
-    	    	controller.setMidaStage(mpStage);
     	    	
+    	    	controller.setMidaStage(mpStage);
+    	    	controller.setIdUser(id);
+    	    	controller.setUsuario();
     	    	mpStage.show();
     	    	
         	}else {
-        		System.out.print("Usuario ou senha incorretos");
+        		System.out.println("Usuario ou senha incorretos");
         	}    
         	tfNomeU.setText(null);
         	tfSenhaU.setText(null);
