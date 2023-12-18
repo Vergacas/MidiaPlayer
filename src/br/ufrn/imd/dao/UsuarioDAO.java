@@ -80,19 +80,25 @@ public class UsuarioDAO {
 		
 		return output;
 	}
-	
-	public boolean testeSegurança(Usuario u){
-		boolean test = false;
+	/***
+	 * 
+	 * Método testeSegurança, recebe um usuario e retorna um usuario que ja é cadastrado na Lista de Usuarios.
+	 * Caso o Nome e a Senha do Usuario recebido nao batam com nenhum Usuario ja cadastrado, é tenornado
+	 * um valor nulo.
+	 * @param Usuario u
+	 * @return Usuario use
+	 */
+	public Usuario testeSegurança(Usuario u){
+
 		for(Usuario use : usuarios) {
 			if(u.getNome().equals(use.getNome())) {
 				if(u.getSenha().equals(use.getSenha())) {
-					test = true;
-					break;
+					return use;
 				}
 			}
 		}
 		
-		return test;
+		return null;
 	}
 	
 	
@@ -102,9 +108,9 @@ public class UsuarioDAO {
 		FileWriter escritor = new FileWriter(caminho);
 		String output = "";
 		for(Usuario u : usuarios) {
-			output += String.valueOf(u.getId()) + "\n" +
-					u.getNome() + "\n" + u.getEmail() + "\n"
-					+ u.getSenha() + "\n" + 
+			output += String.valueOf(u.getId()) + ";" +
+					u.getNome() + ";" + u.getEmail() + ";"
+					+ u.getSenha() + ";" + 
 					formato.format(u.getDataNasc());
 			
 		}
@@ -120,27 +126,26 @@ public class UsuarioDAO {
 		
 		Usuario u = new Usuario();
 		
-		int cont = 0;
+		
 		
 		while(scan.hasNextLine()) {
-			if(cont == 0) {
-				scan.nextLine();
-				//u.setId(Integer.valueOf());
-			}else if (cont == 1) {
-				u.setNome(scan.nextLine());
-				
-			} else if (cont == 2) {
-				u.setEmail(scan.nextLine());
-			} else if (cont == 3) {
-				u.setSenha(scan.nextLine());
-			} else {
-				scan.nextLine();
-				cont = 0;
-				u.setId(usuarios.size());
-				usuarios.add(u);
-				u = new Usuario();
-			}
-			cont++;
+			String[] dadosUser;
+			String recuperar = scan.nextLine();
+			dadosUser = recuperar.split(";");
+			u.setId(Integer.valueOf(dadosUser[0]));
+			u.setNome(dadosUser[1]);
+			u.setEmail(dadosUser[2]);
+			u.setSenha(dadosUser[3]);
+			
+			Date data = new Date();
+			String[] dadosData = dadosUser[4].split("/");
+			data.setDate(Integer.valueOf(dadosData[0]));
+			data.setMonth(Integer.valueOf(dadosData[1]));
+			data.setYear(Integer.valueOf(dadosData[2]));
+			
+			u.setDataNasc(data);
+			
+			usuarios.add(u);
 		}
 		scan.close();
 	}
