@@ -27,7 +27,7 @@ public class UsuarioDAO {
 	 * @throws FileNotFoundException 
 	 * 
 	 */
-	public UsuarioDAO() throws FileNotFoundException {
+	public UsuarioDAO() throws FileNotFoundException  {
 		usuarios = new ArrayList<Usuario>();
 		recuperUsuarios();
 		System.out.println(usuarios.size());
@@ -154,5 +154,16 @@ public class UsuarioDAO {
 			usuarios.add(u);
 		}
 		scan.close();
+	}
+	
+	public Usuario getUsuario(Integer idUser) {
+		Usuario u = new Usuario();
+		for(Usuario use : usuarios) {
+			if(use.getId().equals(idUser)) {
+				u = use;
+			}
+		}
+		
+		return u;
 	}
 }
