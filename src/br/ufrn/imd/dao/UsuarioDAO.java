@@ -87,14 +87,15 @@ public class UsuarioDAO {
 	 * @return Usuario use
 	 */
 	public Usuario testeSegurança(Usuario u){
-		System.out.println("1");
+		if(u.getNome() == null || u.getSenha() == "") {
+			return null;
+		}
+				
 		int cont = 0;
 		for(Usuario use : usuarios) {
 			System.out.println(cont);
 			if(u.getNome().equals(use.getNome())) {
-				System.out.println("1");
 				if(u.getSenha().equals(use.getSenha())) {
-					System.out.println("2");
 					return use;
 				}
 			}
