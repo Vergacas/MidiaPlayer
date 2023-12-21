@@ -1,10 +1,10 @@
 # MidiaPlayer
 
-## Versï¿½es :
+### Versão :
 javaFX version 19. 
 Eclipse Version: 2022-03 (4.23.0).
 
-## Organizaï¿½ï¿½o :
+## Organização :
 caminho para Main: src/br/ufrn/imd/Main.java
 
 ## Referencias : 
