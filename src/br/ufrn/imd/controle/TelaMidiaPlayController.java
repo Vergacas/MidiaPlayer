@@ -170,15 +170,14 @@ public class TelaMidiaPlayController implements Initializable{
     	
     	lvMusicas.setItems(obMusicas);
     }
-    
-    public void setUsuario() throws FileNotFoundException {
-    	bdUsuario = UsuarioDAO.getIstance();
-    	user = bdUsuario.getUsuario(idUser);
-    }
-    
-    public void setIdUser(Integer id) {
+      
+    public void setIdUser(Integer id) throws FileNotFoundException {
     	idUser = id;
     	System.out.println(idUser);
+    	bdUsuario = UsuarioDAO.getIstance();
+    	user = bdUsuario.getUsuario(id);
+    	txtUserNome.setText(user.getNome());
+    	
     }
     
     /**
