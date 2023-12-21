@@ -121,7 +121,6 @@ public class TelaLoginController {
     	    	
     	    	controller.setMidaStage(mpStage);
     	    	controller.setIdUser(id);
-    	    	controller.setUsuario();
     	    	mpStage.show();
     	    	
         	}else {
