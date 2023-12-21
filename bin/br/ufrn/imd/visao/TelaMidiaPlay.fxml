@@ -75,12 +75,12 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnNextMusic" layoutX="452.0" layoutY="507.0" mnemonicParsing="false" onAction="#nextMidia" prefHeight="50.0" prefWidth="90.0" text="Next">
+      <Button fx:id="btnNextMusic" layoutX="452.0" layoutY="507.0" mnemonicParsing="false" onAction="#nextMidia" prefHeight="50.0" prefWidth="90.0" text="Proxima">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnReturnMusic" layoutX="92.0" layoutY="507.0" mnemonicParsing="false" onAction="#backMidia" prefHeight="50.0" prefWidth="90.0" text="Return">
+      <Button fx:id="btnReturnMusic" layoutX="92.0" layoutY="507.0" mnemonicParsing="false" onAction="#backMidia" prefHeight="50.0" prefWidth="90.0" text="Anterior">
          <font>
             <Font size="18.0" />
          </font>
