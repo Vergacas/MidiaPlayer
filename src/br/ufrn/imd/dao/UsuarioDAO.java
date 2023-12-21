@@ -158,13 +158,11 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario getUsuario(Integer idUser) {
-		Usuario u = new Usuario();
 		for(Usuario use : usuarios) {
 			if(use.getId().equals(idUser)) {
-				u = use;
+				return use;
 			}
 		}
-		
-		return u;
+		return null;
 	}
 }
