@@ -1,16 +1,20 @@
 package br.ufrn.imd.controle;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import br.ufrn.imd.dao.UsuarioDAO;
 import br.ufrn.imd.modelo.Usuario;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -18,7 +22,7 @@ import javafx.stage.Stage;
  * @author jeanv
  *
  */
-public class TelaCadastroUsuarioController {
+public class TelaCadastroUsuarioController implements Initializable{
 	/**
 	 * Atributo Stage
 	 */
@@ -37,62 +41,52 @@ public class TelaCadastroUsuarioController {
 	/**
 	 * botao que cancela o Usuario
 	 */
-    @FXML
-    private Button btnCancelar;
+    @FXML private Button btnCancelar;
     
     /**
      * botao que confirma o Usuario
      */
-    @FXML
-    private Button btnConfirmar;
+    @FXML private Button btnConfirmar;
     
     /**
      * DatePicker entrada da dataNasc para Usuario
      */
-    @FXML
-    private DatePicker dtPickerDtNasc;
+    @FXML private DatePicker dtPickerDtNasc;
     
     /**
      * Label lbDataNasc
      */
-    @FXML
-    private Label lbDataNasc;
+    @FXML private Label lbDataNasc;
     
     /**
      * Label lbEmai
      */
-    @FXML
-    private Label lbEmail;
+    @FXML private Label lbEmail;
     
     /**
      * Label lbNomeUser
      */
-    @FXML
-    private Label lbNomeUser;
+    @FXML private Label lbNomeUser;
     
     /**
      * Label lbSenha
      */
-    @FXML
-    private Label lbSenha;
+    @FXML private Label lbSenha;
     
     /**
      * Entrada para emal do usuario
      */
-    @FXML
-    private TextField tfEmail;
+    @FXML private TextField tfEmail;
     
     /**
      * Entrada para nome do Usuario
      */
-    @FXML
-    private TextField tfNomeUser;
+    @FXML private TextField tfNomeUser;
     
     /**
      * Entrada para senha do Usuario
      */
-    @FXML
-    private TextField tfSenha;
+    @FXML private TextField tfSenha;
     
     /**
      * Método para pegar o estado do btnConfirmarClicked;
@@ -115,7 +109,7 @@ public class TelaCadastroUsuarioController {
      * @param event
      */
     @FXML
-    void cancelarUsuario(ActionEvent event) {
+    void cancelarUsuario() {
     	usuarioStage.close();
     }
     
@@ -125,10 +119,9 @@ public class TelaCadastroUsuarioController {
      * @throws IOException 
      */
     @FXML
-    void inserirUsuario(ActionEvent event) throws IOException {
-    	this.btnConfirmarClicked = true;
+    void inserirUsuario()  {
     	
-    	if(this.btnConfirmarClicked) {
+    	try {
     		bdUsuario = UsuarioDAO.getIstance();
     		
     		Usuario u = new Usuario();
@@ -139,7 +132,11 @@ public class TelaCadastroUsuarioController {
     		Date data = new Date(dtPickerDtNasc.getValue().toEpochDay());
     		u.setDataNasc(data);
     		bdUsuario.addUsuario(u);
+    	}catch(IOException e){
+    		e.printStackTrace();
     	}
+		
+	
     	usuarioStage.close();
     }
     
@@ -150,5 +147,27 @@ public class TelaCadastroUsuarioController {
     public void setUsuarioStage(Stage usuarioStage) {
     	this.usuarioStage = usuarioStage;
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+		btnCancelar.setOnMouseClicked((MouseEvent e) -> {
+			cancelarUsuario(); 
+		});
+		
+		btnCancelar.setOnKeyPressed((KeyEvent e)->{
+			cancelarUsuario();
+		});
+		
+		btnConfirmar.setOnMouseClicked((MouseEvent e) -> {
+			inserirUsuario();
+		});
+		
+		btnConfirmar.setOnKeyPressed((KeyEvent e)->{
+			inserirUsuario();
+		});
+		
+	}
 
 }
