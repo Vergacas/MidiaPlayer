@@ -25,7 +25,7 @@ public class Principal extends Application{
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/br/ufrn/imd/visao/TelaLogin.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/br/ufrn/imd/visao/TelaMidiaPlay.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("Tela Loging");
