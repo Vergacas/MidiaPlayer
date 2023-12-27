@@ -22,16 +22,11 @@ import javafx.stage.Stage;
  * @author jeanv
  *
  */
-public class TelaCadastroUsuarioController implements Initializable{
+public class TelaCadastroUsuarioController implements Initializable {
 	/**
 	 * Atributo Stage
 	 */
 	private Stage usuarioStage;
-	
-	/**
-	 * Atributo boolean 
-	 */
-	private boolean btnConfirmarClicked = false;
 	
 	/**
 	 * UsuarioDAO 
@@ -89,22 +84,6 @@ public class TelaCadastroUsuarioController implements Initializable{
     @FXML private TextField tfSenha;
     
     /**
-     * Método para pegar o estado do btnConfirmarClicked;
-     * @return btnConfirmarClicked
-     */
-    public boolean isBtnConfirmarClicked() {
-    	return btnConfirmarClicked;
-    }
-    
-    /**
-     * Métod para alterar o estado de btnConfirmarClicked
-     * @param boolean btnConfirmarClicked
-     */
-    public void setBtnConfirmarClicked(boolean btnConfirmarClicked){
-    	this.btnConfirmarClicked = btnConfirmarClicked;
-    }
-    
-    /**
      * Método para cancelar a criação de um novo Usuario
      * @param event
      */
@@ -135,8 +114,6 @@ public class TelaCadastroUsuarioController implements Initializable{
     	}catch(IOException e){
     		e.printStackTrace();
     	}
-		
-	
     	usuarioStage.close();
     }
     
