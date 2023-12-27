@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -125,6 +127,11 @@ public class TelaLoginController {
     	    	
         	}else {
         		System.out.println("Usuario ou senha incorretos");
+        		Alert alert = new Alert(AlertType.ERROR);
+        		alert.setHeaderText("ERRO, login");
+        		alert.setTitle("ERRO");
+        		alert.setContentText("Usuario ou senha incorretos");
+        		alert.show();
         	}    
         	tfNomeU.setText(null);
         	tfSenhaU.setText(null);
