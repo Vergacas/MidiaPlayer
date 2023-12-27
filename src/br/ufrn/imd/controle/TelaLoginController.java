@@ -1,15 +1,22 @@
 package br.ufrn.imd.controle;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import br.ufrn.imd.dao.UsuarioDAO;
+import br.ufrn.imd.midiaPlayer.Login;
+import br.ufrn.imd.midiaPlayer.Principal;
 import br.ufrn.imd.modelo.Usuario;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -26,7 +33,7 @@ import javafx.stage.Stage;
  * @author jeanv
  * @version 1.2
  */
-public class TelaLoginController {
+public class TelaLoginController implements Initializable{
 
 	private boolean btnConfirmarClicked = false;
 	
@@ -36,7 +43,7 @@ public class TelaLoginController {
     private Button btnCancelar;
 
     @FXML
-    private Button btnComfimar;
+    private Button btnConfirmar;
 
     @FXML
     private CheckBox ckBoxLogado;
@@ -70,34 +77,34 @@ public class TelaLoginController {
      * @throws IOException
      */
     @FXML
-    void abrirTelaUsuario(ActionEvent event) throws IOException{
-    	
-    	FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(TelaCadastroUsuarioController.class.getResource("/br/ufrn/imd/visao/TelaCadastroUsuario.fxml"));
-    	AnchorPane page = (AnchorPane) loader.load();
-    	
-    	Stage usuarioStage = new Stage();
-    	usuarioStage.setTitle("Cadastro de Usuario");
-    	usuarioStage.setResizable(false);
-    	Scene scene = new Scene(page);
-    	usuarioStage.setScene(scene);
-    	
-    	TelaCadastroUsuarioController controller = loader.getController();
-    	controller.setUsuarioStage(usuarioStage);
-    	usuarioStage.showAndWait();
+    void abrirTelaUsuario() {
+    	try {
+	    	FXMLLoader loader = new FXMLLoader();
+	    	loader.setLocation(TelaCadastroUsuarioController.class.getResource("/br/ufrn/imd/visao/TelaCadastroUsuario.fxml"));
+	    	AnchorPane page = (AnchorPane) loader.load();
+	    	
+	    	Stage usuarioStage = new Stage();
+	    	usuarioStage.setTitle("Cadastro de Usuario");
+	    	usuarioStage.setResizable(false);
+	    	Scene scene = new Scene(page);
+	    	usuarioStage.setScene(scene);
+	    	
+	    	TelaCadastroUsuarioController controller = loader.getController();
+	    	controller.setUsuarioStage(usuarioStage);
+	    	usuarioStage.showAndWait();
+    	}catch(IOException e){
+    		e.printStackTrace();
+    	}
     }
 
     @FXML
-    void cancelar(ActionEvent event) {
-    	System.exit(0);
+    void cancelar() {
+    	System.exit(0); 
     }
 
     @FXML
-    void logar(ActionEvent event) throws IOException {
-    	this.btnConfirmarClicked = true;
-    	
-    	if(this.btnConfirmarClicked) {
-
+    void logar(){
+    	try {
         	bdUsuario = UsuarioDAO.getIstance();
         	Usuario user = new Usuario();
         	user.setNome(tfNomeU.getText());
@@ -107,35 +114,51 @@ public class TelaLoginController {
         	
         	if(user != null) {
         		int id = user.getId();
+        		Principal p = new Principal();
         		
-        		FXMLLoader loader = new FXMLLoader();
-    	    	loader.setLocation(TelaMidiaPlayController.class.getResource("/br/ufrn/imd/visao/TelaMidiaPlay.fxml"));
-    	    	AnchorPane page = (AnchorPane) loader.load();
-    	    	
-    	    	Stage mpStage = new Stage();
-    	    	mpStage.setTitle("Midia Player");
-    	    	mpStage.setResizable(false);
-    	    	Scene scene = new Scene(page);
-    	    	mpStage.setScene(scene);
-    	    	
-    	    	TelaMidiaPlayController controller = loader.getController();
-    	    	
-    	    	
-    	    	controller.setMidaStage(mpStage);
-    	    	controller.setIdUser(id);
-    	    	mpStage.show();
-    	    	
+        		try {
+        			p.start(new Stage());
+        			Login.getStage().close();
+        		}catch(Exception e){
+            		e.printStackTrace();
+            	}
+        		
         	}else {
         		System.out.println("Usuario ou senha incorretos");
         		Alert alert = new Alert(AlertType.ERROR);
-        		alert.setHeaderText("ERRO, login");
+        		
         		alert.setTitle("ERRO");
         		alert.setContentText("Usuario ou senha incorretos");
         		alert.show();
-        	}    
+        	   
         	tfNomeU.setText(null);
-        	tfSenhaU.setText(null);
+        	tfSenhaU.setText(null);	
+	    	}
+    	}catch(IOException e){
+    		e.printStackTrace();
     	}
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+		btnCancelar.setOnMouseClicked((MouseEvent e) -> {
+			cancelar();
+		});
+		
+		btnCancelar.setOnKeyPressed((KeyEvent e)->{
+			cancelar();
+		});
+		
+		btnConfirmar.setOnMouseClicked((MouseEvent e) -> {
+			logar();
+		});
+		
+		btnConfirmar.setOnKeyPressed((KeyEvent e)->{
+			logar();
+		});
+		
+	}
 
 }
