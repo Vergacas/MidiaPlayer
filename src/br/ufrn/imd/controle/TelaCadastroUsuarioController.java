@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import br.ufrn.imd.dao.UsuarioDAO;
+import br.ufrn.imd.midiaPlayer.CadastroUsuario;
 import br.ufrn.imd.modelo.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -89,7 +90,7 @@ public class TelaCadastroUsuarioController implements Initializable {
      */
     @FXML
     void cancelarUsuario() {
-    	usuarioStage.close();
+    	CadastroUsuario.getStage().close();
     }
     
     /**
