@@ -40,7 +40,7 @@ public class Principal extends Application{
 	}
 	
 	public static void setStage(Stage stage) {
-		Principal.stage = stage;
-	}
+		Principal.stage = stage; 
+	} 
 
 }
