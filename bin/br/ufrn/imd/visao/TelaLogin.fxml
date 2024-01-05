@@ -58,7 +58,7 @@
                </children>
             </GridPane>
             <Text layoutX="185.0" layoutY="58.0" scaleX="3.0" scaleY="3.0" scaleZ="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loging" />
-            <Button fx:id="btnComfimar" layoutX="55.0" layoutY="260.0" mnemonicParsing="false" onAction="#logar" prefHeight="40.0" prefWidth="93.0" text="Entrar" />
+            <Button fx:id="btnConfirmar" layoutX="55.0" layoutY="260.0" mnemonicParsing="false" onAction="#logar" prefHeight="40.0" prefWidth="93.0" text="Entrar" />
             <Button fx:id="btnCancelar" layoutX="258.0" layoutY="260.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" prefWidth="93.0" text="cancelar" />
             <CheckBox fx:id="ckBoxLogado" layoutX="55.0" layoutY="214.0" mnemonicParsing="false" text="Manter logado" />
          </children>
