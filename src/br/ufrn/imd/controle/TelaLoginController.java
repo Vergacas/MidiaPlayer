@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.ufrn.imd.MidiaPlayer;
 import br.ufrn.imd.dao.UsuarioDAO;
-import br.ufrn.imd.midiaPlayer.Login;
+import br.ufrn.imd.midiaPlayer.CadastroUsuario;
 import br.ufrn.imd.midiaPlayer.Principal;
 import br.ufrn.imd.modelo.Usuario;
 import javafx.fxml.FXMLLoader;
@@ -78,23 +79,13 @@ public class TelaLoginController implements Initializable{
      */
     @FXML
     void abrirTelaUsuario() {
+    	CadastroUsuario cdtu = new CadastroUsuario();
     	try {
-	    	FXMLLoader loader = new FXMLLoader();
-	    	loader.setLocation(TelaCadastroUsuarioController.class.getResource("/br/ufrn/imd/visao/TelaCadastroUsuario.fxml"));
-	    	AnchorPane page = (AnchorPane) loader.load();
-	    	
-	    	Stage usuarioStage = new Stage();
-	    	usuarioStage.setTitle("Cadastro de Usuario");
-	    	usuarioStage.setResizable(false);
-	    	Scene scene = new Scene(page);
-	    	usuarioStage.setScene(scene);
-	    	
-	    	TelaCadastroUsuarioController controller = loader.getController();
-	    	controller.setUsuarioStage(usuarioStage);
-	    	usuarioStage.showAndWait();
-    	}catch(IOException e){
-    		e.printStackTrace();
-    	}
+			cdtu.start(new Stage());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @FXML
@@ -118,7 +109,7 @@ public class TelaLoginController implements Initializable{
         		
         		try {
         			p.start(new Stage());
-        			Login.getStage().close();
+        			MidiaPlayer.getStage().close();
         		}catch(Exception e){
             		e.printStackTrace();
             	}
