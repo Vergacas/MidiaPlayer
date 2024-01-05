@@ -5,7 +5,7 @@ module MidiaPlayer  {
 	requires javafx.base;
 	requires javafx.media;
 		
-	exports br.ufrn.imd.midiaPlayer;
+	exports br.ufrn.imd;
 		
 	opens application to javafx.graphics, javafx.fxml;
 	opens br.ufrn.imd.controle to javafx.fxml;
