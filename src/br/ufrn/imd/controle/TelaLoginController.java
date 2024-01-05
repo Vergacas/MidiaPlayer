@@ -1,5 +1,6 @@
 package br.ufrn.imd.controle;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -92,7 +93,21 @@ public class TelaLoginController implements Initializable{
     void cancelar() {
     	System.exit(0); 
     }
-
+    
+    void salvarUsuarioLogado(int id) throws IOException {
+		String caminho = "salvos/usuariosLogado.txt";
+		FileWriter escritor = new FileWriter(caminho);
+		String output = "";
+		if(ckBoxLogado.isSelected()) {
+			output = "true;" + id;
+    	}else {
+    		output = "false" + id;
+    	}
+		
+		escritor.write(output);
+		escritor.close();
+    }
+    
     @FXML
     void logar(){
     	try {
@@ -104,9 +119,9 @@ public class TelaLoginController implements Initializable{
         	user = bdUsuario.testeSegurança(user);
         	
         	if(user != null) {
-        		int id = user.getId();
-        		Principal p = new Principal();
-        		
+        		System.out.println("chamando metodo");
+        		salvarUsuarioLogado(user.getId());		
+        		Principal p = new Principal();    		
         		try {
         			p.start(new Stage());
         			MidiaPlayer.getStage().close();
@@ -133,7 +148,7 @@ public class TelaLoginController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+	
 		btnCancelar.setOnMouseClicked((MouseEvent e) -> {
 			cancelar();
 		});
